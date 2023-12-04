@@ -35,14 +35,9 @@ with open(fname) as f:
 
         for won_copy in range(matched_number_count):
             try:
-                cards[card + won_copy + 1] = cards[card + won_copy + 1] + cards[card]
+                cards[card + won_copy + 1] += cards[card]
             except:
                 print("something went wrong")
-            
-        
-        # points += score
-
-        # print(f"Card {card}: {score} points")
 
         card += 1
 
