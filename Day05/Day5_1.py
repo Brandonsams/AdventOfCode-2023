@@ -35,13 +35,14 @@ with open(fname) as f:
         seeds.append(int(seeds_string))
 
     for almanac_section_text in almanac_sections_text[1:]:
-        print("-----------------")
+        # print("-----------------")
         current_section = almanac_section(section_text=almanac_section_text)
-        print(current_section.title)
+        # print(current_section.title)
 
-        for line in current_section.almanac_section_lines:
-            for i in tqdm(range(line.range_length)):
-                current_section.mapping[line.source_range_start + i] = line.destination_range_start + i
+        # for line in tqdm(current_section.almanac_section_lines):
+        #     for i in tqdm(range(line.range_length)):
+        #         pass
+                # current_section.mapping[line.source_range_start + i] = line.destination_range_start + i
         
         almanac_sections.append(current_section)
 
@@ -49,7 +50,22 @@ min_location_number = 999999999999999999999
 for seed in seeds:
     seed_journey = [seed]
     for almanac_section in almanac_sections:
-        seed_journey.append(almanac_section.mapping.get(seed_journey[-1],seed_journey[-1]))
+        print(almanac_section.title)
+        for almanac_section_line in almanac_section.almanac_section_lines[::-1]:
+
+            next_journey_stage = None
+            if seed_journey[-1] in range(almanac_section_line.source_range_start, almanac_section_line.source_range_start + almanac_section_line.range_length):
+                next_journey_stage = (seed_journey[-1] - almanac_section_line.source_range_start) + almanac_section_line.destination_range_start
+                seed_journey.append(next_journey_stage)
+                break
+            else:
+                next_journey_stage = seed_journey[-1]
+                seed_journey.append(next_journey_stage)
+
+
+            seed_journey.append(next_journey_stage)
+
+        # seed_journey.append(almanac_section.mapping.get(seed_journey[-1],seed_journey[-1]))
     print(seed_journey)
     min_location_number = min(min_location_number,seed_journey[-1])
 
