@@ -70,7 +70,7 @@ def hand_a_better_than_hand_b(hand_a: CamelCardsHand, hand_b: CamelCardsHand) ->
         if a_rank > b_rank:
             return False
 
-    # They must be equal at this point, so a can't be better than b
+    # They must be equal at this point, so a can't be strictly better than b
     return False
 
 
