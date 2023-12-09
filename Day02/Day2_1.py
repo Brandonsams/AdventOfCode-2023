@@ -42,5 +42,5 @@ with open(fname) as f:
 
 print("----------------")
 print(f"Answer: {cumulative_impossible_game_indices}")
-            
+# Answer: 2169
                 
