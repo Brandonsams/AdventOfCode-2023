@@ -1,10 +1,6 @@
-from tqdm import tqdm
-
 # fname = "./Day09/example.txt"
 fname = "./Day09/input.txt"
-
 prev_history_items = []
-
 def is_all_zeros(candidate_list: [int]) -> bool:
     return len(set(candidate_list)) == 1 and list(set(candidate_list))[0] == 0
 
